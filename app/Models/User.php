@@ -40,4 +40,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get all colors of the user.
+     */
+    public function colors()
+    {
+        return $this->hasManyThrough(UserColor::class, Color::class);
+    }
 }
