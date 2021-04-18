@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AngularController;
 use App\Http\Controllers\UserColorsController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,8 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/cms', [UserColorsController::class, 'getUserColors']);
+*/
+
+Route::any('/{any}', [AngularController::class, 'index'])->where('any', '^(?!api).*$');
