@@ -17,6 +17,7 @@ class CreateUserColorsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('color_id')->constrained();
+            $table->unsignedTinyInteger('position');
             $table->timestamps();
         });
     }

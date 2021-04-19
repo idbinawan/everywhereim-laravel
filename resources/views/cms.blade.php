@@ -15,7 +15,7 @@
                 <h1>Gebruikers</h1>
 
                 @foreach ($users as $user)
-                <p>User #{{ $user->id }}</p>
+                <p>User #{{ $user->id }} {{ $user->name }}</p>
                 @endforeach
 
             </div>

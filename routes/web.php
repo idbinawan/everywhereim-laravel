@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AngularController;
-use App\Http\Controllers\UserColorsController;
+use App\Http\Controllers\UserColorController;
 use Illuminate\Support\Facades\Route;
 
 /*

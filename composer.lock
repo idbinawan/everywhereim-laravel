@@ -4847,6 +4847,7 @@
                 "php": "^7.1 || ^8.0"
             },
             "require-dev": {
+                "composer/xdebug-handler": "^1.2",
                 "doctrine/coding-standard": "^8.0",
                 "ext-pdo": "*",
                 "ext-phar": "*",
@@ -5909,6 +5910,8 @@
                 "shasum": ""
             },
             "require": {
+                "composer/xdebug-handler": "^1.4",
+                "friendsofphp/php-cs-fixer": "^2.16",
                 "ext-dom": "*",
                 "ext-libxml": "*",
                 "ext-xmlwriter": "*",

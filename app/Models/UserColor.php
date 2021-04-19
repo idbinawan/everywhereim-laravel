@@ -17,5 +17,6 @@ class UserColor extends Model
     protected $fillable = [
         'user_id',
         'color_id',
+        'position',
     ];
 }

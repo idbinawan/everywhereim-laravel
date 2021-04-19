@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UserColorController;
+use App\Http\Controllers\ColorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/users', [UserColorController::class, 'getUsers']);
+Route::get('/user/{id}', [UserColorController::class, 'getUser']);
+Route::get('/colors/{user_id}', [ColorController::class, 'show']);
