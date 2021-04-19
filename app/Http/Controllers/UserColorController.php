@@ -9,6 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Database\Eloquent\InvalidCastException;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use InvalidArgumentException;
@@ -58,7 +59,7 @@ class UserColorController extends Controller
     }
 
     /**
-     * Create a new UserColor
+     * Create a new UserColor (POST)
      *
      * @param Request $request
      * @return mixed
@@ -69,7 +70,7 @@ class UserColorController extends Controller
     }
 
     /**
-     * Update UserColor
+     * Update UserColor (PUT)
      *
      * @param Request $request
      * @param int $id
@@ -81,6 +82,41 @@ class UserColorController extends Controller
         $userColor->update($request->all());
 
         return $userColor;
+    }
+
+    /**
+     * Delete color from a user
+     *
+     * @param int $id
+     * @return Response
+     */
+    public function delete(int $id)
+    {
+        $userColor = UserColor::findOrFail($id);
+        $userColor->delete();
+        return response()->noContent();
+    }
+
+    /**
+     * Shuffle the order or the colors belong to a user
+     *
+     * @param int $userId
+     * @return array
+     */
+    public function shuffleColors(int $userId)
+    {
+        $userColors = UserColor::where('user_id', $userId)->get();
+        $shuffledColors = $userColors->shuffle();
+        $shuffledColors->all();
+
+        $i = 1;
+        foreach($shuffledColors as $userColor) {
+            $userColor->position = $i;
+            $userColor->save();
+            $i++;
+        }
+
+        return $shuffledColors;
     }
 
     /**
