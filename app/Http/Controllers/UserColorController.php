@@ -34,7 +34,7 @@ class UserColorController extends Controller
     }
 
     /**
-     * Get all users and their colors
+     * Get a user and his colors
      *
      * @param int $id
      * @return JsonResponse
@@ -66,7 +66,8 @@ class UserColorController extends Controller
      */
     public function store(Request $request)
     {
-        return UserColor::create($request->all());
+        $colors = self::getColors($request->input('user_id'));
+        return UserColor::create(array_merge($request->all(), ['position' => count($colors) + 1]));
     }
 
     /**

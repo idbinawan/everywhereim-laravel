@@ -1,0 +1,30 @@
+<div class="list row">
+    <div class="col-8" id="user-list">
+        <hr />
+      <h1>Gebruikers</h1>
+      <div
+        class="user"
+        *ngFor="let user of users; let i = index"
+      >
+        <div class="inline">{{ user.id }}.</div>
+        <div class="inline">
+            <div
+                class="color"
+                style="background-color: {{ color.color_code }};"
+                *ngFor="let color of user.colors; let idx = index"
+                (click)="editColor(user.id, color.id)"
+                ></div>
+        </div>
+        <div
+            class="inline icon"
+            *ngIf="user.colors.length>1;else empty_content"
+            >&or;</div>
+        <div
+            class="inline icon"
+            (click)="addColor(user.id)"
+            >&oplus;</div>
+      </div>
+    </div>
+</div>
+
+<ng-template #empty_content><div class="inline icon">&nbsp;</div></ng-template>

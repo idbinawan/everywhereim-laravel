@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/users', [UserColorController::class, 'getUsers']);
 Route::get('/user/{id}', [UserColorController::class, 'getUser']);
 Route::get('/colors/{user_id}', [ColorController::class, 'show']);
+Route::get('/colors', [ColorController::class, 'index']);
 Route::post('/colors', [UserColorController::class, 'store']);
 Route::put('/colors/{id}', [UserColorController::class, 'update']);
 Route::delete('/colors/{id}', [UserColorController::class, 'delete']);

@@ -1,0 +1,18 @@
+<div class="color-palettes">
+    <div
+    class="color"
+    style="background-color: {{ color.color_code }};"
+    *ngFor="let color of colors; let idx = index"
+    (click)="editColor(color.id)"
+    ></div>
+</div>
+<div
+ class="bin"
+ [class.hide]=!deletable
+>
+    <img
+        class="img-responsive"
+        src="assets/images/trash.png"
+        (click)="deleteColor()"
+        />
+</div>

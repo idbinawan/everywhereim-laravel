@@ -2,10 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Color;
 use Illuminate\Support\Facades\DB;
 
 class ColorController extends Controller
 {
+    /**
+     * Get all colors
+     *
+     * @return JsonResponse
+     */
+    public function index()
+    {
+        $colors = Color::all();
+
+        return response()->json($colors);
+    }
     /**
      * Get all colors belong to a user
      *
