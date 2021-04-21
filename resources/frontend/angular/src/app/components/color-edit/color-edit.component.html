@@ -1,7 +1,7 @@
 <div class="color-palettes">
     <div
     class="color"
-    style="background-color: {{ color.color_code }};"
+    [ngStyle]="{'background-color': color.color_code}"
     *ngFor="let color of colors; let idx = index"
     (click)="editColor(color.id)"
     ></div>

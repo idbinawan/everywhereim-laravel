@@ -10,7 +10,7 @@
         <div class="inline">
             <div
                 class="color"
-                style="background-color: {{ color.color_code }};"
+                [ngStyle]="{'background-color': color.color_code}"
                 *ngFor="let color of user.colors; let idx = index"
                 (click)="editColor(user.id, color.id)"
                 ></div>
