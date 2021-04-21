@@ -25,4 +25,4 @@ Route::put('/colors/{id}', [UserColorController::class, 'update']);
 Route::delete('/colors/{id}', [UserColorController::class, 'delete']);
 Route::get('/shuffle-colors/{user_id}', [UserColorController::class, 'shuffleColors']);
 Route::delete('/user/{id}', [UserColorController::class, 'deleteUserColors']);
-Route::post('/users', [UserColorController::class, 'createUserColor']);
+Route::get('/create-user', [UserColorController::class, 'createUserColor']);

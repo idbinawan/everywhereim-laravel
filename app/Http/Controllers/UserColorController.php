@@ -118,12 +118,11 @@ class UserColorController extends Controller
     /**
      * Create a new user & one randomly chosen color (POST)
      *
-     * @param Request $request
      * @return Response
      */
-    public function createUserColor(Request $request) {
+    public function createUserColor() {
         try {
-            $user = User::create(['name' => $request->input('name')]);
+            $user = User::create(['name' => time()]);
             $colors = Color::all();
             $randomColor = $colors->shuffle()->first();
             $userColor = UserColor::create([
@@ -131,7 +130,7 @@ class UserColorController extends Controller
                             'color_id' => $randomColor->id,
                             'position' => 1,
                         ]);
-            return response()->noContent();
+            return $this->getUser($user->id);
         } catch (\Throwable $th) {
             return response()->noContent()->withException($th);
         }
