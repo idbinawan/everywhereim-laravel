@@ -99,6 +99,45 @@ class UserColorController extends Controller
     }
 
     /**
+     * Delete user and his colors
+     *
+     * @param int $userId
+     * @return Response|void
+     */
+    public function deleteUserColors(int $userId)
+    {
+        try {
+            $userColors = UserColor::where('user_id', $userId)->delete();
+            User::findOrFail($userId)->delete();
+            return response()->noContent();
+        } catch (\Throwable $th) {
+            return response()->noContent()->withException($th);
+        }
+    }
+
+    /**
+     * Create a new user & one randomly chosen color (POST)
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function createUserColor(Request $request) {
+        try {
+            $user = User::create(['name' => $request->input('name')]);
+            $colors = Color::all();
+            $randomColor = $colors->shuffle()->first();
+            $userColor = UserColor::create([
+                            'user_id' => $user->id,
+                            'color_id' => $randomColor->id,
+                            'position' => 1,
+                        ]);
+            return response()->noContent();
+        } catch (\Throwable $th) {
+            return response()->noContent()->withException($th);
+        }
+    }
+
+    /**
      * Shuffle the order or the colors belong to a user
      *
      * @param int $userId
